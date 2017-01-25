@@ -2,6 +2,7 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -10,19 +11,26 @@ public class Controller {
     Label output;
     @FXML
     TextField input;
+    @FXML
+    ChoiceBox<String> options;
 
     public void displayPrime() {
         int SIZE = Integer.parseInt(input.getText());
         int i=1;
         String out = "";
-        do {
-            if(isPrime(i) && (i!=SIZE)) {
-                out += i + ", ";
-            } else if(isPrime(i) && (i==SIZE)) {
-                out += i + ".";
-            }
-            i++;
-        } while(i<=SIZE);
+        //System.out.println(options.getSelectionModel().getSelectedItem());
+        if(options.getSelectionModel().getSelectedItem().equals("Prime Number")) {
+            do {
+                if (isPrime(i) && (i != SIZE)) {
+                    out += i + ", ";
+                } else if (isPrime(i) && (i == SIZE)) {
+                    out += i + ".";
+                }
+                i++;
+            } while (i <= SIZE);
+        } else if (options.getSelectionModel().getSelectedItem().equals("Factorial")) {
+                out = String.valueOf(factorial(SIZE));
+        }
         output.setText(out);
     }
 
@@ -44,5 +52,15 @@ public class Controller {
             i++;
         } while (i<=number);
         return prime;
+    }
+
+    public int factorial(int n) {
+        int result = 1;
+        if(n==1 || n==0) {
+            result = result;
+        } else {
+            result = n * factorial(n-1);
+        }
+        return result;
     }
 }
