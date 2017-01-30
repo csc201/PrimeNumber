@@ -1,12 +1,20 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 
-public class Controller {
+import java.net.URL;
+import java.util.Observable;
+import java.util.ResourceBundle;
+
+public class Controller implements Initializable{
     @FXML
     Label output;
     @FXML
@@ -14,12 +22,25 @@ public class Controller {
     @FXML
     ChoiceBox<String> options;
 
-    public void displayPrime() {
-        int SIZE = Integer.parseInt(input.getText());
+    public void setChoiceBox() {
+        System.out.println("set choice box");
+        ObservableList<String> observableList = FXCollections.observableArrayList(Constants.PRIME_TEXT,Constants.FACTORIAL_TEXT,Constants.ODD_NUMBER_TEXT,Constants.EVEN_NUMBER_TEXT);
+        options = new ChoiceBox<String>(observableList);
+        options.setValue(Constants.PRIME_TEXT);
+    }
+
+    public void display() {
+
+        int SIZE = 0;
+        if(!input.getText().equals("")) {
+            SIZE = Integer.parseInt(input.getText());
+        }
+
         int i=1;
         String out = "";
-        //System.out.println(options.getSelectionModel().getSelectedItem());
-        if(options.getSelectionModel().getSelectedItem().equals("Prime Number")) {
+        System.out.println(options.getSelectionModel().getSelectedItem());
+        //options.setSelectionModel();
+        if(options.getSelectionModel().getSelectedItem().equals(Constants.PRIME_TEXT)) {
             do {
                 if (isPrime(i) && (i != SIZE)) {
                     out += i + ", ";
@@ -30,6 +51,8 @@ public class Controller {
             } while (i <= SIZE);
         } else if (options.getSelectionModel().getSelectedItem().equals("Factorial")) {
                 out = String.valueOf(factorial(SIZE));
+        } else if (options.getSelectionModel().getSelectedItem().equals("Odd Number")) {
+
         }
         output.setText(out);
     }
@@ -62,5 +85,10 @@ public class Controller {
             result = n * factorial(n-1);
         }
         return result;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 }

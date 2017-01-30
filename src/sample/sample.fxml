@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -10,26 +9,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
 <GridPane alignment="CENTER" hgap="10" prefHeight="220.0" prefWidth="277.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="258.0">
+      <VBox fx:id="vbox" alignment="CENTER" prefHeight="200.0" prefWidth="258.0">
          <children>
             <Label prefHeight="126.0" prefWidth="257.0" text="Select an option and enter the amount to display the output" textAlignment="CENTER" />
-            <ChoiceBox fx:id="options" prefWidth="150.0" value="Prime Number">
-            <items>
-               <FXCollections fx:factory="observableArrayList">
-                  <String fx:value="Prime Number" />
-                  <String fx:value="Factorial" />
-                  <String fx:value="Odd Number" />
-                  <String fx:value="Even Number" />
-               </FXCollections>
-            </items>
-            </ChoiceBox>
             <Label fx:id="output" prefHeight="192.0" prefWidth="250.0" textFill="#d7da13" />
             <TextField fx:id="input" />
-            <Button mnemonicParsing="false" onAction="#displayPrime" text="Calculate!" />
+            <Button mnemonicParsing="false" onAction="#display" text="Calculate!" />
          </children>
       </VBox>
    </children>
